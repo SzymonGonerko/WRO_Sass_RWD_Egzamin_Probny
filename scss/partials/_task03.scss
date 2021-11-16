@@ -1,0 +1,48 @@
+@use "sass:math";
+
+@mixin arrow ($color, $direction, $size) {
+  width: 0;
+  height: 0;
+  color: $color;
+
+  @if ($direction == 'top') {
+    border-bottom: $size solid $color;
+    border-left: math.floor(math.div($size, 2)) solid transparent;
+    border-right: math.floor(math.div($size, 2)) solid transparent;
+  }
+
+  @else if($direction == 'bottom') {
+    border-top: $size solid $color;
+    border-left: math.floor(math.div($size, 2)) solid transparent;
+    border-right: math.floor(math.div($size, 2)) solid transparent;
+  }
+
+  @else if($direction == 'left') {
+    border-top: math.floor(math.div($size, 2)) solid transparent;
+    border-bottom: math.floor(math.div($size, 2)) solid transparent;
+    border-right: $size solid $color;
+  }
+
+  @else if($direction == 'right') {
+    border-top: $size / 2 solid transparent;
+    border-bottom: math.floor(math.div($size, 2)) solid transparent;
+    border-left: $size solid $color;
+
+  }
+}
+
+.arrow-test-blue-top-20px {
+  @include arrow(blue, top, 20px)
+}
+
+.arrow-test-green-right-60px {
+  @include arrow(green, right, 60px)
+}
+
+.arrow-test-red-left-25px {
+  @include arrow(red, left, 25px)
+}
+
+.arrow-test-orange-bottom-100px {
+  @include arrow(orange, bottom, 100px);
+}
